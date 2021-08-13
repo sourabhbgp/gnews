@@ -1,0 +1,36 @@
+{
+  "name": "gnews",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "husky": "^4.3.8",
+    "next": "11.1.0",
+    "next-seo": "^4.26.0",
+    "nprogress": "^0.2.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "styled-components": "^5.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.3.1",
+    "babel-plugin-styled-components": "^1.13.2",
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.0",
+    "postcss": "^8.3.6",
+    "prettier": "^2.3.2",
+    "pretty-quick": "^3.1.1",
+    "prop-types": "^15.7.2",
+    "tailwindcss": "^2.2.7"
+  }
+}
