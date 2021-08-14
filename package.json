@@ -6,10 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "svg": "svgr -d src/components/icons src/components/icons/svgs",
     "lint": "next lint"
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "date-fns": "^2.23.0",
     "lodash": "^4.17.21",
     "next": "11.1.0",
     "next-seo": "^4.26.0",
@@ -24,6 +26,7 @@
     }
   },
   "devDependencies": {
+    "@svgr/cli": "^5.5.0",
     "autoprefixer": "^10.3.1",
     "babel-plugin-styled-components": "^1.13.2",
     "eslint": "7.32.0",
