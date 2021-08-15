@@ -6,13 +6,13 @@ import { totalPagesCount, PER_PAGE_FIRST } from '../utils/pagination';
 import { getRequest } from '../requests';
 import qs from 'qs';
 
-const Home = ({ locale, totalArticles, articles }) => {
+const SearchPage = ({ locale, totalArticles, articles, defaultTerm }) => {
   const pagesCount = totalPagesCount(totalArticles);
 
   return (
     <Layout locale={locale}>
       <div className="p-6">
-        <Search />
+        <Search defaultTerm={defaultTerm} />
         <CardList totalArticles={totalArticles} articles={articles} />
         <Pagination pagesCount={pagesCount} />
       </div>
@@ -20,11 +20,12 @@ const Home = ({ locale, totalArticles, articles }) => {
   );
 };
 
-export const getStaticProps = async ({ locale }) => {
+export const getServerSideProps = async ({ locale, query }) => {
   const queryString = qs.stringify({
     token: process.env.NEXT_PUBLIC_TOKEN,
     max: PER_PAGE_FIRST,
     lang: locale,
+    q: query?.q,
   });
 
   const { data } = await getRequest(`?${queryString}`);
@@ -35,17 +36,9 @@ export const getStaticProps = async ({ locale }) => {
       locale: locale ?? 'en',
       totalArticles: data?.totalArticles ?? 0,
       articles: data?.articles ?? [],
+      defaultTerm: query?.q ?? '',
     },
-
-    // error handling remained
-
-    /**
-     * Revalidate means that if a new request comes to server, then every 5 min it will check
-     * if the data is changed, if it is changed then it will update the
-     * static file inside .next folder with the new data, so that any 'SUBSEQUENT' requests should have updated data.
-     */
-    revalidate: 300,
   };
 };
 
-export default Home;
+export default SearchPage;
