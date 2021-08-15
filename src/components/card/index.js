@@ -1,23 +1,28 @@
 import Date from './date';
 import LikeButton from './likeButton';
 import HideButton from './hideButton';
+import ExternalLink from '../externalLink';
 
 const Card = ({ article }) => {
   return (
     <div className="p-6 bg-white rounded shadow-xl hover:shadow-2xl hover:scale-105 transition-all transform duration-500">
-      <a className="cursor-pointer" target="_blank" href={article?.url} rel="nofollow">
-        <img className="w-full object-cover rounded h-48" src={article?.image} alt="" />
-      </a>
+      <ExternalLink url={article?.url}>
+        <img
+          className="w-full object-cover rounded h-48"
+          src={article?.image}
+          alt=""
+        />
+      </ExternalLink>
       <div className="mt-4">
-        <a
-          className="text-sm mb-2 text-blue-500 font-base hover:underline cursor-pointer"
-          target="_blank"
-          href={article?.source?.url}>
-          {article?.source?.name}
-        </a>
-        <a className="cursor-pointer" target="_blank" href={article?.url} rel="nofollow">
+        <ExternalLink url={article?.source?.url}>
+          <span className="text-sm mb-2 text-blue-500 font-base hover:underline">
+            {article?.source?.name}
+          </span>
+        </ExternalLink>
+
+        <ExternalLink url={article?.url}>
           <h2 className="text-xl font-bold text-gray-700">{article?.title}</h2>
-        </a>
+        </ExternalLink>
         <p className="text-sm mt-2 text-gray-500">
           <Date dateString={article?.publishedAt} />
         </p>
