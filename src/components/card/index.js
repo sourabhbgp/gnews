@@ -3,7 +3,9 @@ import LikeButton from './likeButton';
 import HideButton from './hideButton';
 import ExternalLink from '../externalLink';
 
-const Card = ({ article }) => {
+const Card = ({ article, likeStatus, likeCount, onHidePress, onLikePress }) => {
+  // console.count('render');
+
   return (
     <div className="p-6 bg-white rounded shadow-xl hover:shadow-2xl hover:scale-105 transition-all transform duration-500">
       <ExternalLink url={article?.url}>
@@ -28,8 +30,13 @@ const Card = ({ article }) => {
         </p>
       </div>
       <div className="mt-3 space-x-4 flex p-1">
-        <LikeButton status={false} />
-        <HideButton />
+        <LikeButton
+          status={likeStatus}
+          count={likeCount}
+          onLikePress={onLikePress}
+          uid={article?.url}
+        />
+        <HideButton uid={article?.url} onHidePress={onHidePress} />
       </div>
     </div>
   );
