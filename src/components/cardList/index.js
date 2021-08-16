@@ -25,10 +25,12 @@ const CardList = ({
 
     return { status, count, hidden };
   };
+  const startCardNumber = (currentPage, maxPerPage) => {};
+  const endCardNumber = (currentPage, maxPerPage) => {};
 
   return (
     <div className="py-8 md:px-4">
-      <p className="pl-1">{`Showing ${1} - ${3} of ${totalArticles} results`}</p>
+      {/* <p className="pl-1">{`Showing ${1} - ${3} of ${totalArticles} results`}</p> */}
       <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3  py-8">
         {map(articles, (article, i) => {
           let { status, count, hidden } = checkLiked(article.url, likedData);

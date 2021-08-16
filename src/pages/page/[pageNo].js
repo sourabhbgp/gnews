@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Layout from '../../components/layout';
 import Search from '../../components/search';
 import CardList from '../../components/cardList';
@@ -8,7 +9,7 @@ import { getRequest } from '../../requests';
 import qs from 'qs';
 import { map, keys, values, filter } from 'lodash';
 
-// import DATA from '../../../sample.json';
+import DATA from '../../../sample.json';
 
 const Home = ({
   locale,
@@ -19,6 +20,9 @@ const Home = ({
 }) => {
   const pagesCount = totalPagesCount(totalArticles);
   const [gnewsData, setGnewsData] = useState([]);
+  const router = useRouter();
+
+  if ('undefined' !== typeof window && 1 === currentPageNo) router.push('/');
 
   useEffect(() => {
     const gnewsData = localStorage.getItem('gnews');
@@ -125,9 +129,9 @@ export const getServerSideProps = async ({ locale, query: { q, pageNo } }) => {
     q,
   });
 
-  const { data } = await getRequest(`?${queryString}`);
+  // const { data } = await getRequest(`?${queryString}`);
 
-  // const data = { ...DATA };
+  const data = { ...DATA };
 
   return {
     props: {
