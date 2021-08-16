@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const Tab = ({ activeTab }) => {
   return (
-    <nav className="flex flex-col sm:flex-row">
+    <nav className="flex flex-row">
       {map(LocaleData, (data, i) => (
         <Link href={'/'} locale={data.locale} key={i}>
           <a

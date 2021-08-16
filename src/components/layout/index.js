@@ -8,13 +8,16 @@ const Layout = ({ children, locale }) => {
     <div className="min-h-screen flex  flex-col">
       <Header activeTab={locale} />
       <Container className={'flex-1 bg-gray-100'}>{children}</Container>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
 
 Layout.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default Layout;

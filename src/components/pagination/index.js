@@ -21,7 +21,7 @@ const Pagination = ({ pagesCount, currentPageNo }) => {
           <Link key={`id-${index}`} href={paginationLink}>
             <a
               className={cx(
-                'border border-gray-300 px-4 py-2 transition duration-500 ease-in-out hover:bg-blue-500 hover:text-white text-base rounded',
+                'border border-gray-300 px-4 py-2 transition duration-500 ease-in-out hover:bg-blue-500 hover:text-white text-base rounded hidden md:inline-block',
                 {
                   'is-active bg-blue-500 text-white': pageNo === currentPageNo,
                 },
@@ -32,7 +32,9 @@ const Pagination = ({ pagesCount, currentPageNo }) => {
           </Link>
         ) : (
           // If its "..."
-          <span key={`id-${index}`} className="px-3 py-2">
+          <span
+            key={`id-${index}`}
+            className="px-3 py-2 hidden md:inline-block">
             {pageNo}
           </span>
         );
