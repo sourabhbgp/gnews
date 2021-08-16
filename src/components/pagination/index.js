@@ -45,11 +45,8 @@ const Pagination = ({ pagesCount, currentPageNo }) => {
 };
 
 Pagination.propTypes = {
-  pagesCount: PropTypes.number,
-};
-
-Pagination.defaultProps = {
-  pagesCount: 0,
+  pagesCount: PropTypes.number.isRequired,
+  currentPageNo: PropTypes.number.isRequired,
 };
 
 export default Pagination;

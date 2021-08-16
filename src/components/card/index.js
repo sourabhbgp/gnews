@@ -2,10 +2,9 @@ import Date from './date';
 import LikeButton from './likeButton';
 import HideButton from './hideButton';
 import ExternalLink from '../externalLink';
+import PropTypes from 'prop-types';
 
 const Card = ({ article, likeStatus, likeCount, onHidePress, onLikePress }) => {
-  // console.count('render');
-
   return (
     <div className="p-6 bg-white rounded shadow-xl hover:shadow-2xl hover:scale-105 transition-all transform duration-500">
       <ExternalLink url={article?.url}>
@@ -42,6 +41,23 @@ const Card = ({ article, likeStatus, likeCount, onHidePress, onLikePress }) => {
       </div>
     </div>
   );
+};
+
+Card.propTypes = {
+  article: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    publishedAt: PropTypes.string.isRequired,
+    source: PropTypes.shape({
+      url: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+  }),
+  likeStatus: PropTypes.bool.isRequired,
+  likeCount: PropTypes.number.isRequired,
+  onHidePress: PropTypes.func.isRequired,
+  onLikePress: PropTypes.func.isRequired,
 };
 
 export default Card;

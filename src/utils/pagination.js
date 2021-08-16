@@ -80,7 +80,10 @@ export const createPaginationLinks = (currentPage, totalPages) => {
    * only if the difference of between the last and 2nd last item is greater than 2.
    * We remove the count of dot items from the array to get the actual indexes, while checking the condition.
    */
-  if (2 < totalPages - paginationArray[paginationArray.length - (2 - countOfDotItems)]) {
+  if (
+    2 <
+    totalPages - paginationArray[paginationArray.length - (2 - countOfDotItems)]
+  ) {
     paginationArray.push('...');
   }
 
