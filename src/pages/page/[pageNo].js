@@ -129,19 +129,31 @@ export const getServerSideProps = async ({ locale, query: { q, pageNo } }) => {
     q,
   });
 
-  // const { data } = await getRequest(`?${queryString}`);
+  try {
+    // const { data } = await getRequest(`?${queryString}`);
 
-  const data = { ...DATA };
+    const data = { ...DATA };
 
-  return {
-    props: {
-      locale: locale ?? 'en',
-      totalArticles: data?.totalArticles ?? 0,
-      articles: data?.articles ?? [],
-      currentPageNo: Number(pageNo) ?? 1,
-      defaultTerm: q ?? '',
-    },
-  };
+    if (!data) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: {
+        locale: locale ?? 'en',
+        totalArticles: data?.totalArticles ?? 0,
+        articles: data?.articles ?? [],
+        currentPageNo: Number(pageNo) ?? 1,
+        defaultTerm: q ?? '',
+      },
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
 };
 
 export default Home;

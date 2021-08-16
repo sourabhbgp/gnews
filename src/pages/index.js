@@ -124,32 +124,36 @@ export const getStaticProps = async ({ locale }) => {
     max: PER_PAGE_FIRST,
     lang: locale,
   });
+  try {
+    // const { data } = await getRequest(`?${queryString}`);
+    const data = { ...DATA };
 
-  // const { data } = await getRequest(`?${queryString}`);
+    if (!data) {
+      return {
+        notFound: true,
+      };
+    }
+    return {
+      props: {
+        locale: locale ?? 'en',
+        totalArticles: data?.totalArticles ?? 0,
+        articles: data?.articles ?? [],
+        defaultTerm: '',
+        currentPageNo: 1,
+      },
 
-  const data = { ...DATA };
-
-  if (!data) {
+      /**
+       * Revalidate means that if a new request comes to server, then every 5 min it will check
+       * if the data is changed, if it is changed then it will update the
+       * static file inside .next folder with the new data, so that any 'SUBSEQUENT' requests should have updated data.
+       */
+      revalidate: 300,
+    };
+  } catch (error) {
     return {
       notFound: true,
     };
   }
-  return {
-    props: {
-      locale: locale ?? 'en',
-      totalArticles: data?.totalArticles ?? 0,
-      articles: data?.articles ?? [],
-      defaultTerm: '',
-      currentPageNo: 1,
-    },
-
-    /**
-     * Revalidate means that if a new request comes to server, then every 5 min it will check
-     * if the data is changed, if it is changed then it will update the
-     * static file inside .next folder with the new data, so that any 'SUBSEQUENT' requests should have updated data.
-     */
-    revalidate: 300,
-  };
 };
 
 export default Home;
