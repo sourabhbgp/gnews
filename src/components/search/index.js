@@ -24,7 +24,9 @@ const SearchComp = ({ defaultTerm }) => {
           value={term}
           onChange={(e) => setTerm(e.target.value)}
         />
-        <button className="px-6 md:px-8 rounded-r-lg bg-blue-500 text-white font-bold py-4 uppercase border-blue-500 border-t border-b border-r  text-base  focus:outline-none ">
+        <button
+          aria-label="search"
+          className="px-6 md:px-8 rounded-r-lg bg-blue-500 text-white font-bold py-4 uppercase border-blue-500 border-t border-b border-r  text-base  focus:outline-none ">
           <Search width={24} height={24} fill={'#ffffff'} />
         </button>
       </form>

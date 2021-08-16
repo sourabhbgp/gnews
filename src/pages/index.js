@@ -10,7 +10,7 @@ import { map, keys, values, filter } from 'lodash';
 import { onHide } from '../utils/hidden';
 import { onLike } from '../utils/like';
 
-import DATA from '../../sample.json';
+// import DATA from '../../sample.json';
 
 const Home = ({
   locale,
@@ -125,8 +125,9 @@ export const getStaticProps = async ({ locale }) => {
     lang: locale,
   });
   try {
-    // const { data } = await getRequest(`?${queryString}`);
-    const data = { ...DATA };
+    const { data } = await getRequest(`?${queryString}`);
+
+    // const data = { ...DATA };
 
     if (!data) {
       return {

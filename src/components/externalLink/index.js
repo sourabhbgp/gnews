@@ -5,6 +5,7 @@ const ExternalLink = ({ url, children }) => {
     <a
       className="cursor-pointer"
       target="_blank"
+      aria-label="article"
       href={url}
       rel="noreferrer nofollow">
       {children}

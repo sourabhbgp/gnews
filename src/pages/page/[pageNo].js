@@ -9,7 +9,7 @@ import { getRequest } from '../../requests';
 import qs from 'qs';
 import { map, keys, values, filter } from 'lodash';
 
-import DATA from '../../../sample.json';
+// import DATA from '../../../sample.json';
 
 const Home = ({
   locale,
@@ -130,9 +130,9 @@ export const getServerSideProps = async ({ locale, query: { q, pageNo } }) => {
   });
 
   try {
-    // const { data } = await getRequest(`?${queryString}`);
+    const { data } = await getRequest(`?${queryString}`);
 
-    const data = { ...DATA };
+    // const data = { ...DATA };
 
     if (!data) {
       return {
