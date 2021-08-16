@@ -1,4 +1,4 @@
-# 🎨 Project Gnews - Nextjs ( Rectjs - Server Side )
+# 🎨 Project Gnews - Nextjs ( Reactjs - Server Side )
 
 - Gnews free API is used to render top news from multiple website in three language English, Hindi and French.
 - Server-side Rendering tech is used to improve the SEO.
