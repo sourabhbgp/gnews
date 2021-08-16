@@ -12,12 +12,14 @@ const Card = ({ article, likeStatus, likeCount, onHidePress, onLikePress }) => {
         <img
           className="w-full object-cover rounded h-48"
           src={article?.image}
-          alt=""
+          alt={article?.title}
+          width={300}
+          height={200}
         />
       </ExternalLink>
       <div className="mt-4">
         <ExternalLink url={article?.source?.url}>
-          <span className="text-sm mb-2 text-blue-500 font-base hover:underline">
+          <span className="text-sm mb-2 text-blue-700 font-base hover:underline">
             {article?.source?.name}
           </span>
         </ExternalLink>
