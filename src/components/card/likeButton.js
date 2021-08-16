@@ -1,4 +1,5 @@
 import { Like } from '../icons';
+import PropTypes from 'prop-types';
 
 const LikeButton = ({ status, count, onLikePress, uid }) => {
   return (
@@ -12,6 +13,13 @@ const LikeButton = ({ status, count, onLikePress, uid }) => {
       <span className="ml-2 text-sm  text-gray-500">{count}</span>
     </div>
   );
+};
+
+LikeButton.propTypes = {
+  status: PropTypes.bool.isRequired,
+  count: PropTypes.number.isRequired,
+  onLikePress: PropTypes.func.isRequired,
+  uid: PropTypes.string.isRequired,
 };
 
 export default LikeButton;

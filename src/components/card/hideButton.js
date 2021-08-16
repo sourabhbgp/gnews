@@ -1,4 +1,5 @@
 import { Hide } from '../icons';
+import PropTypes from 'prop-types';
 
 const HideButton = ({ uid, onHidePress }) => {
   return (
@@ -8,6 +9,11 @@ const HideButton = ({ uid, onHidePress }) => {
       </button>
     </div>
   );
+};
+
+HideButton.propTypes = {
+  uid: PropTypes.string.isRequired,
+  onHidePress: PropTypes.func.isRequired,
 };
 
 export default HideButton;

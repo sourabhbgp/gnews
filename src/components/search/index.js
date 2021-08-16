@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { isEmpty } from 'lodash';
 import { Search } from '../icons';
+import PropTypes from 'prop-types';
 
 const SearchComp = ({ defaultTerm }) => {
   const router = useRouter();
@@ -32,6 +33,10 @@ const SearchComp = ({ defaultTerm }) => {
       </form>
     </div>
   );
+};
+
+SearchComp.propTypes = {
+  defaultTerm: PropTypes.string,
 };
 
 export default SearchComp;
