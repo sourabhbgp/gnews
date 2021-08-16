@@ -7,8 +7,10 @@ import { totalPagesCount, PER_PAGE_FIRST } from '../utils/pagination';
 import { getRequest } from '../requests';
 import qs from 'qs';
 import { map, keys, values, filter } from 'lodash';
+import { onHide } from '../utils/hidden';
+import { onLike } from '../utils/like';
 
-// import DATA from '../../sample.json';
+import DATA from '../../sample.json';
 
 const Home = ({
   locale,
@@ -33,20 +35,17 @@ const Home = ({
     const data = localStorage.getItem('gnews');
     let updatedData = [];
     if (!data) {
-      console.log('First Entry');
       updatedData = [{ [uid]: { status: true, count: 1 } }];
       setGnewsData(updatedData);
       localStorage.setItem('gnews', JSON.stringify(updatedData));
       return;
     }
-
     const parsedData = JSON.parse(data);
     let found = false;
     map(parsedData, (each, i) => {
       if (keys(each)?.[0] === uid) {
         found = true;
         let count = values(each)?.[0].count;
-
         let obj = {
           [uid]: {
             ...values(each)?.[0],
@@ -54,7 +53,6 @@ const Home = ({
             count: status ? ++count : --count,
           },
         };
-
         updatedData = filter(parsedData, (e) => {
           return keys(e)?.[0] !== uid;
         }).concat(obj);
@@ -63,7 +61,6 @@ const Home = ({
         return;
       }
     });
-
     if (!found) {
       updatedData = [...parsedData].concat({
         [uid]: { status, count: 1 },
@@ -83,9 +80,7 @@ const Home = ({
       localStorage.setItem('gnews', JSON.stringify(updatedData));
       return;
     }
-
     const parsedData = JSON.parse(data);
-
     let found = false;
     map(parsedData, (each, i) => {
       if (keys(each)?.[0] === uid) {
@@ -94,21 +89,17 @@ const Home = ({
         updatedData = filter(parsedData, (e) => {
           return keys(e)?.[0] !== uid;
         }).concat(obj);
-
         setGnewsData(updatedData);
         localStorage.setItem('gnews', JSON.stringify(updatedData));
         return;
       }
     });
-
     if (!found) {
       updatedData = [...parsedData].concat({ [uid]: { hidden: true } });
       setGnewsData(updatedData);
       localStorage.setItem('gnews', JSON.stringify(updatedData));
     }
   };
-
-  console.count('home');
 
   return (
     <Layout locale={locale}>
@@ -134,9 +125,9 @@ export const getStaticProps = async ({ locale }) => {
     lang: locale,
   });
 
-  const { data } = await getRequest(`?${queryString}`);
+  // const { data } = await getRequest(`?${queryString}`);
 
-  // const data = { ...DATA };
+  const data = { ...DATA };
 
   if (!data) {
     return {
